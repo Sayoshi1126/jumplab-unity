@@ -9,7 +9,19 @@ AnimatorOverrideController:
   m_Name: KirbyAnimatorController
   m_Controller: {fileID: 9100000, guid: 6fae330841ad989488f45f9669da2d6b, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: a964bdb68ade49b45bde4bc49d1b66b0, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: a964bdb68ade49b45bde4bc49d1b66b0, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 9091d00be02abc1428518a75463fc604, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: a964bdb68ade49b45bde4bc49d1b66b0, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 57f83fad00d61e743a21d6098bf04477, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: f44f6e991a43ccd4bb59ac9490f5503d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: acc1851b91384e049b4b611ea9b78854, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 084bb4d7924506445904c10550591d6d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5a52f93fdf35c3342b6c46e0bd722a16, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 29725484d3dfa1f4896267e350f7ac4c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 574fe7d4eff1ebf468b3752c9a94069c, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: e0f5e291887bcbc47bf25d95da00b4ff, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b0e80cd2dd85edc4b95188d3dbcf83e6, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 9b5f5d0c8ff2a4141b2657cf849f25d6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b328d7096b1ba8e48a1e21cc14ef4fe2, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: f6a44c34e181af14ab4addf4f874ba0d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d378220030f27c14a875b33d52d68a7f, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: e57093a9f38a1b44b929ba73625eb5f7, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6a68f24bdb939704e9de6b432ccfe346, type: 2}

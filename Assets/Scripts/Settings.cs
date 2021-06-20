@@ -15,8 +15,8 @@ public class Settings : SingletonMonoBehaviour<Settings>
     public float cameraVX;
     public float cameraVY;
 
-    public Rigidbody2D Masaorb2D;
-    public Jumper jumper;
+    [HideInInspector] public Rigidbody2D Masaorb2D;
+    [HideInInspector] public Jumper jumper;
     public GameObject Masao;
     bool preShowTrail;
 
@@ -76,15 +76,16 @@ public class Settings : SingletonMonoBehaviour<Settings>
             return;
         }
 
-        Masaorb2D = Masao.GetComponent<Rigidbody2D>();
-        jumper = Masao.GetComponent<Jumper>();
-        Masao.GetComponent<echoEffect>().enabled = showTrail;
-
     }
     private void Start()
     {
         Application.targetFrameRate = 60; //FPSを60に設定 
+        
+        Masaorb2D = Masao.GetComponent<Rigidbody2D>();
+        jumper = Masao.GetComponent<Jumper>();
+        Masao.GetComponent<echoEffect>().enabled = showTrail;
     }
+
     private void Update()
     {
         if(showTrail != preShowTrail)

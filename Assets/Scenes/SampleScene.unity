@@ -4949,7 +4949,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 1
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -8880,6 +8880,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1566397032704829028, guid: e23c8b217965aeb49a588abef06ad391,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 148336551a6fef24d86acc737d0a1063,
+        type: 2}
     - target: {fileID: 1566397032704829029, guid: e23c8b217965aeb49a588abef06ad391,
         type: 3}
       propertyPath: m_Name
@@ -8940,6 +8946,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1566397032704829035, guid: e23c8b217965aeb49a588abef06ad391,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 09909b329918ef248bd5b0c7c00f9287,
+        type: 3}
     - target: {fileID: 1566397032704829039, guid: e23c8b217965aeb49a588abef06ad391,
         type: 3}
       propertyPath: rigidbody2D
@@ -11577,7 +11589,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1313432998}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 1
+    OrthographicSize: 3
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
