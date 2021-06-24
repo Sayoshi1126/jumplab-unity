@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
-    public Rigidbody2D Masaorb2D;
-    public Jumper jumper;
+    [HideInInspector] public Rigidbody2D Masaorb2D;
+    [HideInInspector] public Jumper jumper;
     public GameObject Masao;
+
+    public RuntimeAnimatorController MasaoAnimator;
+    public RuntimeAnimatorController KirbyAnimator;
+    public RuntimeAnimatorController RealAnimator;
 
     // Start is called before the first frame update
     void Awake()

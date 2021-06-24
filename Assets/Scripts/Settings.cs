@@ -22,6 +22,7 @@ public class Settings : SingletonMonoBehaviour<Settings>
 
     [HideInInspector] public bool jumping;
 
+
     public bool showTrail = false;// Show the trail or not.
     public bool allowAerialJump = true;// Allow aerial jump or not.
     public bool allowAerialWalk = true;// Allow aerial walk or not.
@@ -37,7 +38,6 @@ public class Settings : SingletonMonoBehaviour<Settings>
     public float vxAdjustmentAtTakeoff = 0.0f; //Horizontal velocity adjustment at the takeoff.
     public float maxPropellingFrames = 0;
     public float gravityRising = 0.5f;
-
     public float gravityFalling = 1.2f; // gravity when falling.
     public float verticalSpeedSustainLevel = 1.0f; // Sustain level of the vertical speed when the button released.
     public float axNormal = 0.2f; // Horizontal acceleration in normal state.
@@ -67,6 +67,14 @@ public class Settings : SingletonMonoBehaviour<Settings>
     public bool showAfterimage = false; // Show afterimage instead of red dots when 'showTrail' is true.
     public bool showInputStatus = false; // Show the input status.
 
+    public enum CharaType
+    {
+        oneHead,
+        threeHead,
+        eightHead
+    }
+    [SerializeField] CharaType charaType = CharaType.oneHead;
+    private CharaType changeChara;
 
     private void Awake()
     {
@@ -84,6 +92,7 @@ public class Settings : SingletonMonoBehaviour<Settings>
         Masaorb2D = Masao.GetComponent<Rigidbody2D>();
         jumper = Masao.GetComponent<Jumper>();
         Masao.GetComponent<echoEffect>().enabled = showTrail;
+        changeChara = charaType;
     }
 
     private void Update()
@@ -92,6 +101,23 @@ public class Settings : SingletonMonoBehaviour<Settings>
         {
             Masao.GetComponent<echoEffect>().enabled = showTrail;
             preShowTrail = showTrail;
+        }
+
+        if (charaType != changeChara)
+        {
+            if (charaType == CharaType.oneHead)
+            {
+                Masao.GetComponent<Animator>().runtimeAnimatorController = (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(GameManager.Instance.KirbyAnimator);
+            }
+            else if (charaType == CharaType.threeHead)
+            {
+                Masao.GetComponent<Animator>().runtimeAnimatorController = (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(GameManager.Instance.MasaoAnimator);
+            }
+            else if (charaType == CharaType.eightHead)
+            {
+                Masao.GetComponent<Animator>().runtimeAnimatorController = (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(GameManager.Instance.RealAnimator);
+            }
+            changeChara = charaType;
         }
     }
 }
