@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\CinemachinePan.cs" />
     <Compile Include="Assets\Scripts\CinemachineVirturalCameraCus.cs" />
     <Compile Include="Assets\Scripts\ControllerManager.cs" />
+    <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\Example.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GraphTest.cs" />

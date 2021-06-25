@@ -17,7 +17,7 @@ public class Settings : SingletonMonoBehaviour<Settings>
 
     [HideInInspector] public Rigidbody2D Masaorb2D;
     [HideInInspector] public Jumper jumper;
-    public GameObject Masao;
+    [HideInInspector] public GameObject Masao;
     bool preShowTrail;
 
     [HideInInspector] public bool jumping;
@@ -88,7 +88,8 @@ public class Settings : SingletonMonoBehaviour<Settings>
     private void Start()
     {
         Application.targetFrameRate = 60; //FPSを60に設定 
-        
+
+        Masao = GameManager.Instance.Masao;
         Masaorb2D = Masao.GetComponent<Rigidbody2D>();
         jumper = Masao.GetComponent<Jumper>();
         Masao.GetComponent<echoEffect>().enabled = showTrail;

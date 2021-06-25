@@ -58,8 +58,6 @@ public class Jumper : MonoBehaviour
     void Update()
     {
 
-        bool hDL, hDR, hUL, hUR;
-
         pvx = vx;
         pvy = vy;
         px = x;
@@ -180,16 +178,6 @@ public class Jumper : MonoBehaviour
         Settings.Instance.jumperY = transform.position.y;
         Settings.Instance.jumperVX = rigidbody2D.velocity.x;
         Settings.Instance.jumperVY = rigidbody2D.velocity.y;
-    }
-
-    float center_x()
-    {
-        return x + w / 2;
-    }
-
-    float center_y()
-    {
-        return y + h / 2;
     }
     void velocityXUpdate()
     {

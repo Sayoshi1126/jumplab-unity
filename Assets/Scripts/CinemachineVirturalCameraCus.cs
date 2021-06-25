@@ -8,10 +8,10 @@ public class CinemachineVirturalCameraCus : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
     private CinemachineFramingTransposer transposer;
-    private float focusDistance = 0.3f;
+    [SerializeField] private float focusDistance = 0.3f;
     [SerializeField] float focusSpeed = 0.01f;
     private float focus = 0.5f;
-    private bool platformSnapping = true;
+    [SerializeField] private bool platformSnapping = true;
 
     private bool lastJumping;
     private bool stopCamera;
