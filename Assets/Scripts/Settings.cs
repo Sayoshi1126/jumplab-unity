@@ -23,7 +23,6 @@ public class Settings : SingletonMonoBehaviour<Settings>
     [HideInInspector] public bool jumping;
 
 
-    public bool showTrail = false;// Show the trail or not.
     public bool allowAerialJump = true;// Allow aerial jump or not.
     public bool allowAerialWalk = true;// Allow aerial walk or not.
     public bool allowAerialTurn = false; //Allow aerial turn or not.
@@ -58,12 +57,13 @@ public class Settings : SingletonMonoBehaviour<Settings>
     //public float cameraEasingGrounding_y = 0.2; // Smoothness of the camera motion when the jumper grounded.
     //public float cameraWindow_h = 0; // Height of the camera window.
     //public float cameraWindow_w = 0; // Width of the camera window.
-    public float focusDistance = 100; // Distance to the focal point.
-    public float focusingSpeed = 5; // Velocity of the focal point movement.
+    //public float focusDistance = 100; // Distance to the focal point.
+    //public float focusingSpeed = 5; // Velocity of the focal point movement.
     public float bgScrollRatio = 0.5f; // Determine the scroll speed of the BG layer.
 
     // Misc. parameters
     public bool showVelocityChart = false; // Show velocity chart in the chart canvas.
+    public bool showTrail = false;// Show the trail or not.
     public bool showAfterimage = false; // Show afterimage instead of red dots when 'showTrail' is true.
     public bool showInputStatus = false; // Show the input status.
 

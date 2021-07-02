@@ -308,6 +308,7 @@ public class Jumper : MonoBehaviour
             Settings.Instance.jumping = Jumping;
             transform.localScale = new Vector2(-transform.localScale.x, 1);
             rigidbody2D.velocity = new Vector2(Settings.Instance.maxVx * Settings.Instance.wallJumpSpeedRatio * transform.localScale.x, 0);
+            Debug.Log(transform.localScale.x);
             rigidbody2D.AddForce(new Vector2(0, Settings.Instance.jumpVelocity + Mathf.Abs(vx) * Settings.Instance.jumpVelocityBonus));
         }
     }
@@ -323,12 +324,12 @@ public class Jumper : MonoBehaviour
     void control()
     {
         move();
-        if(Input.GetKeyDown(KeyCode.Space)|| Input.GetKeyDown("joystick button 0"))
+        if(Input.GetKeyDown(KeyCode.Space)|| ControllerManager.Instance.jumpButtonDown)
         {
             jumpStart();
             propellingTime = 0;
         }
-        else if (Input.GetKeyUp(KeyCode.Space)|| Input.GetKeyUp("joystick button 0"))
+        else if (Input.GetKeyUp(KeyCode.Space)|| ControllerManager.Instance.jumpButtonUp)
         {
             jumpCanceled();
             propelling = false;
@@ -356,6 +357,6 @@ public class Jumper : MonoBehaviour
         Jumping = false;
         Settings.Instance.jumping = Jumping;
         propelling = false;
-        rigidbody2D.velocity = new Vector2(0,rigidbody2D.velocity.y*0.7f);
+        rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x,rigidbody2D.velocity.y*0.7f);
     }
 }

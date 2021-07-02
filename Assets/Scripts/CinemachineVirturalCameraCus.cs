@@ -78,7 +78,7 @@ public class CinemachineVirturalCameraCus : MonoBehaviour
 
         if(transposer.m_DeadZoneWidth!=DZW || transposer.m_DeadZoneHeight!=DZH || transposer.m_SoftZoneWidth != SZW || transposer.m_SoftZoneHeight != SZH)
         {
-            if(transposer.m_DeadZoneWidth != 2 || transposer.m_DeadZoneHeight != 2 || transposer.m_SoftZoneWidth != 2 || transposer.m_SoftZoneHeight != 2)
+            if( transposer.m_DeadZoneHeight != 2 ||transposer.m_SoftZoneHeight != 2)
             {
                 DZW=transposer.m_DeadZoneWidth;
                 DZH=transposer.m_DeadZoneHeight;
@@ -94,8 +94,8 @@ public class CinemachineVirturalCameraCus : MonoBehaviour
     void changeZone(float dzw,float dzh,float szw,float szh)
     {
         transposer.m_DeadZoneHeight = dzh;
-        transposer.m_DeadZoneWidth = dzw;
+        //transposer.m_DeadZoneWidth = dzw;
         transposer.m_SoftZoneHeight = szh;
-        transposer.m_SoftZoneWidth = szw;
+        //transposer.m_SoftZoneWidth = szw;
     }
 }
