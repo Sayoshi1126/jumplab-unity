@@ -36,6 +36,8 @@ public class Jumper : MonoBehaviour
     float propellingTime;
     float wallTime;
 
+    bool shortjump;
+
     BoxCollider2D boxCollider2d;
     float boxColliderX;
     bool corner_correction = false;
@@ -44,6 +46,7 @@ public class Jumper : MonoBehaviour
 
     LineRenderer line;
     int count;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -274,8 +277,16 @@ public class Jumper : MonoBehaviour
         }
     }
 
+    void judgeShortJump()
+    {
+        if(!ControllerManager.Instance.CheckButtonDown(ControllerManager.func.jump)&&Input.GetKey(KeyCode.Space)==false)
+        {
+            shortjump = true;
+        }
+    }
     void jumpStart()
     {
+        anim.SetFloat("jumpAnticipationFrames",Settings.Instance.jumpAnticipationFrames);
         if(!Jumping)
         {
             if(onObstacle&&!wall)
@@ -297,7 +308,15 @@ public class Jumper : MonoBehaviour
             propelling = true; 
         }
         jumpDir = lastDir;
-        rigidbody2D.AddForce(new Vector2(0, Settings.Instance.jumpVelocity+Mathf.Abs(vx)*Settings.Instance.jumpVelocityBonus));
+        if (shortjump)
+        {
+            rigidbody2D.AddForce(new Vector2(0, 100 + Mathf.Abs(vx) * Settings.Instance.jumpVelocityBonus));
+            shortjump = false;
+        }
+        else
+        {
+            rigidbody2D.AddForce(new Vector2(0, Settings.Instance.jumpVelocity + Mathf.Abs(vx) * Settings.Instance.jumpVelocityBonus));
+        }
         vx = Settings.Instance.vxAdjustmentAtTakeoff * vx;
     }
     void wallJump()

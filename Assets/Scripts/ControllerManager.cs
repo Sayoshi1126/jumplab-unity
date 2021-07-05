@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class ControllerManager : SingletonMonoBehaviour<ControllerManager>
 {
     // Start is called before the first frame update
-    
-    enum func
+
+    public enum func
     {
         none,
         jump,
@@ -18,13 +19,13 @@ public class ControllerManager : SingletonMonoBehaviour<ControllerManager>
         step_forward
     }
 
-    [SerializeField] func joyStickButton0=func.none;
+    [SerializeField] func [] joyStickButton = new func[9];
 
-    [HideInInspector]public bool jumpButtonDown;
-    [HideInInspector]public bool jumpButtonUp;
+    [HideInInspector] public bool jumpButtonDown;
+    [HideInInspector] public bool jumpButtonUp;
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -35,7 +36,7 @@ public class ControllerManager : SingletonMonoBehaviour<ControllerManager>
 
         if (Input.GetKeyDown("joystick button 0"))
         {
-            UseFunctionButton(joyStickButton0);
+            UseFunctionButton(joyStickButton[0]);
         }
         if (Input.GetKeyDown("joystick button 1"))
         {
@@ -76,7 +77,7 @@ public class ControllerManager : SingletonMonoBehaviour<ControllerManager>
 
         if (Input.GetKeyUp("joystick button 0"))
         {
-            FalseFunctionButton(joyStickButton0);
+            FalseFunctionButton(joyStickButton[0]);
         }
         if (Input.GetKeyUp("joystick button 1"))
         {
@@ -127,27 +128,27 @@ public class ControllerManager : SingletonMonoBehaviour<ControllerManager>
     {
         if (function == func.none)
         {
-            
-        }else if(function == func.jump)
+
+        } else if (function == func.jump)
         {
             jumpButtonDown = true;
         }
-        else if(function == func.new_style)
+        else if (function == func.new_style)
         {
 
-        }else if(function == func.pause)
+        } else if (function == func.pause)
         {
 
-        }else if(function == func.previous_style)
+        } else if (function == func.previous_style)
         {
 
-        }else if(function == func.step_forward)
+        } else if (function == func.step_forward)
         {
 
-        }else if(function == func.toggle_show_camera_maker)
+        } else if (function == func.toggle_show_camera_maker)
         {
 
-        }else if(function == func.toggle_show_trail)
+        } else if (function == func.toggle_show_trail)
         {
 
         }
@@ -187,5 +188,17 @@ public class ControllerManager : SingletonMonoBehaviour<ControllerManager>
         {
 
         }
+    }
+
+    public bool CheckButtonDown(func function)
+    {
+        for (int i = 0; i<joyStickButton.Length ; i++)
+        {
+            if(joyStickButton[i]==function&&Input.GetKey("joystick button " + joyStickButton.ToString()))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

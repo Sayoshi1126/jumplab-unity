@@ -55,7 +55,6 @@ public class Enemy : MonoBehaviour
 
         if (wallTurn)
         {
-            Debug.Log(hitCastFront.distance);
             if (hitCastFront.distance != 0 && hitCastFront.collider.tag == "ground")
             {
                 transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
