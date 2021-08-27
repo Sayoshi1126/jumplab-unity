@@ -5,15 +5,17 @@ public class Settings : SingletonMonoBehaviour<Settings>
 {
     [HideInInspector] public float dir;
 
-    public float jumperX;
-    public float jumperY;
-    public float jumperVX;
-    public float jumperVY;
+    [HideInInspector] public float jumperX;
+    [HideInInspector] public float jumperY;
+    [HideInInspector] public float jumperVX;
+    [HideInInspector] public float jumperVY;
+    [HideInInspector] public float jumperAX;
+    [HideInInspector] public float jumperAY;
 
-    public float cameraX;
-    public float cameraY;
-    public float cameraVX;
-    public float cameraVY;
+    [HideInInspector] public float cameraX;
+    [HideInInspector] public float cameraY;
+    [HideInInspector] public float cameraVX;
+    [HideInInspector] public float cameraVY;
 
     [HideInInspector] public Rigidbody2D Masaorb2D;
     [HideInInspector] public Jumper jumper;

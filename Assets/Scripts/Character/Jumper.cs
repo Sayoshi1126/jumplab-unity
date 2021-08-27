@@ -150,29 +150,30 @@ public class Jumper : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float offSet = Settings.Instance.collisionTolerance;
-        float penalty = 0;
-        Ray2D rayRight = new Ray2D((Vector2)transform.position + Vector2.up * 0.3f + offSet * Vector2.left, Vector2.right);
-        Ray2D rayLeft = new Ray2D((Vector2)transform.position + Vector2.up * 0.3f + offSet * Vector2.right, Vector2.left);
-        RaycastHit2D hitCastRight = Physics2D.Raycast(rayRight.origin, rayRight.direction, offSet * 2);
-        RaycastHit2D hitCastLeft = Physics2D.Raycast(rayLeft.origin, rayLeft.direction, offSet * 2);
-        Debug.DrawRay(rayRight.origin, (offSet * 2) * rayRight.direction, Color.red);
-        Debug.DrawRay(rayLeft.origin, (offSet*2) * rayLeft.direction, Color.blue);
-        if(hitCastLeft.distance==0&&hitCastRight.distance>0)
-        {
-            penalty = -((offSet + boxColliderX / 2) - hitCastRight.distance)-0.1f;
-            corner_correction = true;
-        }else if (hitCastRight.distance == 0&&hitCastLeft.distance>0)
-        {
-            penalty = (offSet + boxColliderX / 2) - hitCastLeft.distance+0.1f;
-            corner_correction = true;
-            //Debug.Log(hitCastLeft.distance);
-        }
+        collisionTorelance();
+        //float offSet = Settings.Instance.collisionTolerance;
+        //float penalty = 0;
+        //Ray2D rayRight = new Ray2D((Vector2)transform.position + Vector2.up * 0.5f + offSet * Vector2.left, Vector2.right);
+        //Ray2D rayLeft = new Ray2D((Vector2)transform.position + Vector2.up * 0.5f + offSet * Vector2.right, Vector2.left);
+        //RaycastHit2D hitCastRight = Physics2D.Raycast(rayRight.origin, rayRight.direction, offSet * 2);
+        //RaycastHit2D hitCastLeft = Physics2D.Raycast(rayLeft.origin, rayLeft.direction, offSet * 2);
+        //Debug.DrawRay(rayRight.origin, (offSet * 2) * rayRight.direction, Color.red);
+        //Debug.DrawRay(rayLeft.origin, (offSet*2) * rayLeft.direction, Color.blue);
+        //if(hitCastLeft.distance==0&&hitCastRight.distance>0)
+        //{
+        //    penalty = -((offSet + boxColliderX / 2) - hitCastRight.distance)-0.1f;
+        //    corner_correction = true;
+        //}else if (hitCastRight.distance == 0&&hitCastLeft.distance>0)
+        //{
+        //    penalty = (offSet + boxColliderX / 2) - hitCastLeft.distance+0.1f;
+        //    corner_correction = true;
+        //    //Debug.Log(hitCastLeft.distance);
+        //}
 
-        if(corner_correction == true&&Jumping&&!onObstacle)
-        {
-            transform.position = new Vector2(transform.position.x+penalty,transform.position.y);
-        }
+        //if(corner_correction == true&&Jumping&&!onObstacle)
+        //{
+        //    transform.position = new Vector2(transform.position.x+penalty,transform.position.y);
+        //}
 
         wall = false;
         anim.SetBool("wallSlide", false);
@@ -185,6 +186,7 @@ public class Jumper : MonoBehaviour
     void velocityXUpdate()
     {
         float ax;
+        float lastFramesVx = vx;
         vx = rigidbody2D.velocity.x;
         if (Jumping||(!onObstacle && !Settings.Instance.allowAerialWalk))
         {
@@ -235,10 +237,14 @@ public class Jumper : MonoBehaviour
         }
 
         vx = Mathf.Clamp(vx, -Settings.Instance.maxVx, Settings.Instance.maxVx);
+        ax = (vx - lastFramesVx) / Time.deltaTime;
+        Settings.Instance.jumperAX = ax;
     }
 
     void velocityYUpdate()
     {
+        float ay;
+        float lastFramesVy = vy;
         vy = rigidbody2D.velocity.y;
 
         if(Jumping == true && propelling == true&&propellingTime<=Settings.Instance.maxPropellingFrames)
@@ -261,6 +267,8 @@ public class Jumper : MonoBehaviour
         }
 
         rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x,vy);
+        ay = (vy - lastFramesVy) / Time.deltaTime;
+        Settings.Instance.jumperAY = ay;
     }
 
 
@@ -303,6 +311,8 @@ public class Jumper : MonoBehaviour
     {
         Jumping = true;
         Settings.Instance.jumping = Jumping;
+        rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0);
+        collisionTorelance();
         if(Settings.Instance.maxPropellingFrames>0)
         {
             propelling = true; 
@@ -377,5 +387,33 @@ public class Jumper : MonoBehaviour
         Settings.Instance.jumping = Jumping;
         propelling = false;
         rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x,rigidbody2D.velocity.y*0.7f);
+    }
+
+    void collisionTorelance()
+    {
+        float offSet = Settings.Instance.collisionTolerance;
+        float penalty = 0;
+        Ray2D rayRight = new Ray2D((Vector2)transform.position + Vector2.up * 0.5f + offSet * Vector2.left, Vector2.right);
+        Ray2D rayLeft = new Ray2D((Vector2)transform.position + Vector2.up * 0.5f + offSet * Vector2.right, Vector2.left);
+        RaycastHit2D hitCastRight = Physics2D.Raycast(rayRight.origin, rayRight.direction, offSet * 2);
+        RaycastHit2D hitCastLeft = Physics2D.Raycast(rayLeft.origin, rayLeft.direction, offSet * 2);
+        Debug.DrawRay(rayRight.origin, (offSet * 2) * rayRight.direction, Color.red);
+        Debug.DrawRay(rayLeft.origin, (offSet * 2) * rayLeft.direction, Color.blue);
+        if (hitCastLeft.distance == 0 && hitCastRight.distance > 0)
+        {
+            penalty = -((offSet + boxColliderX / 2) - hitCastRight.distance) - 0.1f;
+            corner_correction = true;
+        }
+        else if (hitCastRight.distance == 0 && hitCastLeft.distance > 0)
+        {
+            penalty = (offSet + boxColliderX / 2) - hitCastLeft.distance + 0.1f;
+            corner_correction = true;
+            //Debug.Log(hitCastLeft.distance);
+        }
+
+        if (corner_correction == true && Jumping)// && !onObstacle)
+        {
+            transform.position = new Vector2(transform.position.x + penalty, transform.position.y);
+        }
     }
 }

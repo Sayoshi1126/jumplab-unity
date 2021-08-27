@@ -11,6 +11,9 @@ public class CinemachineVirturalCameraCus : MonoBehaviour
     [SerializeField] private float focusDistance = 0.3f;
     [SerializeField] float focusSpeed = 0.01f;
     private float focus = 0.5f;
+
+    [SerializeField] private bool ForwardFocus = true;
+    [SerializeField] private bool ProjectedFocus = false;
     [SerializeField] private bool platformSnapping = true;
 
     private bool lastJumping;
@@ -21,6 +24,7 @@ public class CinemachineVirturalCameraCus : MonoBehaviour
     private float SZW;//soft zone weight
     private float SZH;
 
+
     void Start()
     {
         transposer = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
@@ -30,12 +34,28 @@ public class CinemachineVirturalCameraCus : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
         if (Settings.Instance.dir != 0)
         {
-            focus = 0.5f - focusDistance * Settings.Instance.jumperVX / Settings.Instance.maxVx;
+            if (ForwardFocus)
+            {
+                focus = 0.5f - focusDistance * Settings.Instance.dir;
+            }
+            else if (ProjectedFocus)
+            {
+                focus = 0.5f - focusDistance * Settings.Instance.jumperVX / Settings.Instance.maxVx;
+                if(Settings.Instance.jumperVX==0&&ForwardFocus)
+                {
+                    focus = 0.5f - focusDistance * Settings.Instance.dir;
+                }
+            }
+            else
+            {
+                focus = 0.5f;
+            }        
         }
 
+
+        //projected focus
         if(focus<0.5f)
         {
             if (focus < transposer.m_ScreenX)
@@ -59,13 +79,14 @@ public class CinemachineVirturalCameraCus : MonoBehaviour
             }
         }
 
+        //platformSnapping
         if(lastJumping!=Settings.Instance.jumping&&platformSnapping)
         {
             if(Settings.Instance.jumping==true)
             {
                 //platform snapping start
                 stopCamera = true;
-                changeZone(2,2,2,2);
+                changeZone(1,1,1,1);
                 
             }
             else
@@ -78,7 +99,7 @@ public class CinemachineVirturalCameraCus : MonoBehaviour
 
         if(transposer.m_DeadZoneWidth!=DZW || transposer.m_DeadZoneHeight!=DZH || transposer.m_SoftZoneWidth != SZW || transposer.m_SoftZoneHeight != SZH)
         {
-            if( transposer.m_DeadZoneHeight != 2 ||transposer.m_SoftZoneHeight != 2)
+            if( transposer.m_DeadZoneHeight != 1 ||transposer.m_SoftZoneHeight != 1)
             {
                 DZW=transposer.m_DeadZoneWidth;
                 DZH=transposer.m_DeadZoneHeight;
