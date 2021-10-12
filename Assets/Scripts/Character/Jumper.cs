@@ -10,15 +10,14 @@ public class Jumper : MonoBehaviour
     private Animator anim;
     float x = 0;
     float y = 0;
-    float px, py;
+    float ay = 0;
     [SerializeField] float vx, vy;
     public Vector2 moveInput;
-    float pvx, pvy;
-    float ay;
     int dir;
     int lastDir;
-    int jumpDir;
     public bool Jumping;
+    bool wallJumping;
+    bool enemyJumping;
     public bool onObstacle;
     bool lastOnObstacle;
     public bool propelling;
@@ -37,15 +36,13 @@ public class Jumper : MonoBehaviour
     float wallTime;
 
     bool shortjump;
+    bool enemyOnStep;
 
     BoxCollider2D boxCollider2d;
     float boxColliderX;
     bool corner_correction = false;
 
     [SerializeField] private ContactFilter2D filter2d = default;
-
-    LineRenderer line;
-    int count;
     
 
     // Start is called before the first frame update
@@ -61,11 +58,6 @@ public class Jumper : MonoBehaviour
     void Update()
     {
 
-        pvx = vx;
-        pvy = vy;
-        px = x;
-        py = y;
-
         control();
         velocityXUpdate();
         velocityYUpdate();
@@ -80,20 +72,11 @@ public class Jumper : MonoBehaviour
         x = Input.GetAxisRaw("Horizontal");
         if (ground) // レイが地面に触れたら、
         {
-        //    if (Input.GetKeyDown(KeyCode.Space))
-        //    {
-        //        rigidbody2D.AddForce(new Vector2(0, jumpPower));
-        //        anim.SetTrigger("Jump");
-        //    }
             //Grounded = true; // 地面に触れたことにする
             anim.SetBool("Ground", true);
 
             
             onObstacle = true;
-            //if(lastOnObstacle!=onObstacle || onObstacle && Jumping)
-            //{
-            //    Jumping = false;
-            //}
         }
         else 
         {
@@ -107,19 +90,6 @@ public class Jumper : MonoBehaviour
         }
 
         lastOnObstacle = onObstacle;
-        //if (x != 0)
-        //{
-        //    rigidbody2D.velocity = new Vector2(x * walkSpeed, rigidbody2D.velocity.y);
-        //    Vector2 temp = transform.localScale;//localScaleが-1だと逆向き
-        //    temp.x = x;
-        //    transform.localScale = temp;//現在の向いてる向きをlocalscaleに代入
-        //    anim.SetBool("running", true);
-        //}
-        //else
-        //{
-        //    rigidbody2D.velocity = new Vector2(0, rigidbody2D.velocity.y);
-        //    anim.SetBool("running", false);
-        //}
 
         if (rigidbody2D.velocity.y < 0)
         {
@@ -139,9 +109,16 @@ public class Jumper : MonoBehaviour
             anim.SetBool("isFalling", false);
         }
 
-        if (wall)
+        if (wall&&rigidbody2D.velocity.y<0)
         {
             wallSlide();
+            //anim.SetBool("wallSlide", true);
+        }
+
+        if(Jumping == false)
+        {
+            wallJumping = false;
+            enemyJumping = false;
         }
 
         moveInput = new Vector2(vx,vy);
@@ -151,29 +128,6 @@ public class Jumper : MonoBehaviour
     private void FixedUpdate()
     {
         collisionTorelance();
-        //float offSet = Settings.Instance.collisionTolerance;
-        //float penalty = 0;
-        //Ray2D rayRight = new Ray2D((Vector2)transform.position + Vector2.up * 0.5f + offSet * Vector2.left, Vector2.right);
-        //Ray2D rayLeft = new Ray2D((Vector2)transform.position + Vector2.up * 0.5f + offSet * Vector2.right, Vector2.left);
-        //RaycastHit2D hitCastRight = Physics2D.Raycast(rayRight.origin, rayRight.direction, offSet * 2);
-        //RaycastHit2D hitCastLeft = Physics2D.Raycast(rayLeft.origin, rayLeft.direction, offSet * 2);
-        //Debug.DrawRay(rayRight.origin, (offSet * 2) * rayRight.direction, Color.red);
-        //Debug.DrawRay(rayLeft.origin, (offSet*2) * rayLeft.direction, Color.blue);
-        //if(hitCastLeft.distance==0&&hitCastRight.distance>0)
-        //{
-        //    penalty = -((offSet + boxColliderX / 2) - hitCastRight.distance)-0.1f;
-        //    corner_correction = true;
-        //}else if (hitCastRight.distance == 0&&hitCastLeft.distance>0)
-        //{
-        //    penalty = (offSet + boxColliderX / 2) - hitCastLeft.distance+0.1f;
-        //    corner_correction = true;
-        //    //Debug.Log(hitCastLeft.distance);
-        //}
-
-        //if(corner_correction == true&&Jumping&&!onObstacle)
-        //{
-        //    transform.position = new Vector2(transform.position.x+penalty,transform.position.y);
-        //}
 
         wall = false;
         anim.SetBool("wallSlide", false);
@@ -284,31 +238,47 @@ public class Jumper : MonoBehaviour
             lastDir = dir;
         }
     }
-
-    void judgeShortJump()
-    {
-        if(!ControllerManager.Instance.CheckButtonDown(ControllerManager.func.jump)&&Input.GetKey(KeyCode.Space)==false)
-        {
-            shortjump = true;
-        }
-    }
     void jumpStart()
     {
-        anim.SetFloat("jumpAnticipationFrames",Settings.Instance.jumpAnticipationFrames);
+        float jumpAnticipationFrames = Settings.Instance.jumpAnticipationFrames;
+        if (jumpAnticipationFrames == 0)
+        {
+            anim.SetFloat("jumpAnticipationFrames", 100);
+        }
+        else
+        {
+            anim.SetFloat("jumpAnticipationFrames", 1/jumpAnticipationFrames);
+        }
         if(!Jumping)
         {
-            if(onObstacle&&!wall)
+            if (onObstacle && !wall)
             {
                 anim.SetTrigger("Jump");
             }
-            else if (!onObstacle&&wall)
+            else if (!onObstacle && wall)
             {
                 anim.SetTrigger("Jump");
+            }
+            else if (enemyOnStep)
+            {
+                anim.SetTrigger("EnemyJump");
             }
         }
     }
     void jump()
     {
+        float jumpPower;
+        if (enemyOnStep)
+        {
+            jumpPower = Settings.Instance.enemyStepVelocity;
+            enemyOnStep = false;
+            enemyJumping = true;
+            Debug.Log("enemyJump");
+        }
+        else
+        {
+            jumpPower = Settings.Instance.jumpVelocity;
+        }
         Jumping = true;
         Settings.Instance.jumping = Jumping;
         rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0);
@@ -317,28 +287,22 @@ public class Jumper : MonoBehaviour
         {
             propelling = true; 
         }
-        jumpDir = lastDir;
-        if (shortjump)
-        {
-            rigidbody2D.AddForce(new Vector2(0, 100 + Mathf.Abs(vx) * Settings.Instance.jumpVelocityBonus));
-            shortjump = false;
-        }
-        else
-        {
-            rigidbody2D.AddForce(new Vector2(0, Settings.Instance.jumpVelocity + Mathf.Abs(vx) * Settings.Instance.jumpVelocityBonus));
-        }
+        
+        rigidbody2D.AddForce(new Vector2(0, jumpPower + Mathf.Abs(vx) * Settings.Instance.jumpVelocityBonus));
+        
         vx = Settings.Instance.vxAdjustmentAtTakeoff * vx;
     }
+
     void wallJump()
     {
         if (Settings.Instance.allowWallJump)
         {
-            Jumping = true;
-            Settings.Instance.jumping = Jumping;
             transform.localScale = new Vector2(-transform.localScale.x, 1);
             rigidbody2D.velocity = new Vector2(Settings.Instance.maxVx * Settings.Instance.wallJumpSpeedRatio * transform.localScale.x, 0);
-            Debug.Log(transform.localScale.x);
             rigidbody2D.AddForce(new Vector2(0, Settings.Instance.jumpVelocity + Mathf.Abs(vx) * Settings.Instance.jumpVelocityBonus));
+            Jumping = true;
+            wallJumping = true;
+            Settings.Instance.jumping = Jumping;
         }
     }
     void jumpCanceled()
@@ -360,8 +324,15 @@ public class Jumper : MonoBehaviour
         }
         else if (Input.GetKeyUp(KeyCode.Space)|| ControllerManager.Instance.jumpButtonUp)
         {
-            jumpCanceled();
             propelling = false;
+        }
+        else if(Jumping&& !Input.GetKey(KeyCode.Space))
+        {
+            jumpCanceled();
+        }
+        else if(Jumping&& Input.GetKey(KeyCode.Space)&&enemyJumping&&!Settings.Instance.enemyStepJump)
+        {
+            jumpCanceled();
         }
     }
 
@@ -384,36 +355,92 @@ public class Jumper : MonoBehaviour
     {
         anim.SetBool("wallSlide",true);
         Jumping = false;
+
         Settings.Instance.jumping = Jumping;
         propelling = false;
-        rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x,rigidbody2D.velocity.y*0.7f);
+        if (rigidbody2D.velocity.y < -Settings.Instance.maxVy * 0.2f)
+        {
+            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, -Settings.Instance.maxVy * 0.2f);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        float judgePos = transform.position.y+0.1f;
+
+        foreach(ContactPoint2D p in collision.contacts)
+        {
+            if (p.point.y<judgePos)
+            {
+                if (collision.gameObject.tag == "enemy"&&Settings.Instance.enemyStep)
+                {
+                    Debug.Log(collision.gameObject.tag);
+                    Jumping = false;
+                    enemyOnStep = true;
+                    jumpStart();
+                }
+            }
+            else
+            {
+
+            }
+        }
     }
 
     void collisionTorelance()
     {
-        float offSet = Settings.Instance.collisionTolerance;
+        float offSet = 0.1f;
+        float toleranceLength = Settings.Instance.collisionTolerance;
         float penalty = 0;
-        Ray2D rayRight = new Ray2D((Vector2)transform.position + Vector2.up * 0.5f + offSet * Vector2.left, Vector2.right);
-        Ray2D rayLeft = new Ray2D((Vector2)transform.position + Vector2.up * 0.5f + offSet * Vector2.right, Vector2.left);
-        RaycastHit2D hitCastRight = Physics2D.Raycast(rayRight.origin, rayRight.direction, offSet * 2);
+        Ray2D rayRight = new Ray2D((Vector2)transform.position + Vector2.up * 0.7f + offSet * Vector2.right, Vector2.left);//右のRay
+        Ray2D rayLeft = new Ray2D((Vector2)transform.position + Vector2.up * 0.7f + offSet * Vector2.left, Vector2.right);//左のRay
+
         RaycastHit2D hitCastLeft = Physics2D.Raycast(rayLeft.origin, rayLeft.direction, offSet * 2);
-        Debug.DrawRay(rayRight.origin, (offSet * 2) * rayRight.direction, Color.red);
-        Debug.DrawRay(rayLeft.origin, (offSet * 2) * rayLeft.direction, Color.blue);
-        if (hitCastLeft.distance == 0 && hitCastRight.distance > 0)
+        RaycastHit2D hitCastRight = Physics2D.Raycast(rayRight.origin, rayRight.direction, offSet * 2);
+        //RaycastHit2D hitCastLeft = Physics2D.Raycast(rayLeft.origin, rayLeft.direction, offSet * 2);
+        Debug.DrawRay(rayRight.origin + Vector2.up * 0.01f, (toleranceLength) * rayRight.direction, Color.red);
+        Debug.DrawRay(rayLeft.origin, (toleranceLength) * rayLeft.direction, Color.blue);
+
+        corner_correction = false;
+
+        bool moveChara = false;
+        if (hitCastRight.distance < Settings.Instance.collisionTolerance && hitCastLeft.distance > 0)//右方向のRay(左サイド)だけ始点が壁にめり込んでない
         {
-            penalty = -((offSet + boxColliderX / 2) - hitCastRight.distance) - 0.1f;
             corner_correction = true;
+            penalty = -(offSet * 2 - hitCastLeft.distance);
+            if (-penalty < toleranceLength)
+            {
+                Debug.Log("hitRightSide");
+                moveChara = true;
+            }
         }
-        else if (hitCastRight.distance == 0 && hitCastLeft.distance > 0)
+        else if (hitCastLeft.distance < Settings.Instance.collisionTolerance && hitCastRight.distance > 0)
         {
-            penalty = (offSet + boxColliderX / 2) - hitCastLeft.distance + 0.1f;
             corner_correction = true;
-            //Debug.Log(hitCastLeft.distance);
+            penalty = offSet * 2 - hitCastRight.distance;
+            if (penalty < toleranceLength)
+            {
+                Debug.Log("hitLeftSide");
+                moveChara = true;
+            }
         }
 
         if (corner_correction == true && Jumping)// && !onObstacle)
         {
-            transform.position = new Vector2(transform.position.x + penalty, transform.position.y);
+            if (moveChara == true)
+            {
+                if(penalty<0)
+                {
+                    penalty -= 0.05f;
+                }
+                else
+                {
+                    penalty += 0.05f;
+                }
+                Debug.Log("collisionTorelance");
+                transform.position = new Vector2(transform.position.x + penalty, transform.position.y);
+            }
         }
     }
 }

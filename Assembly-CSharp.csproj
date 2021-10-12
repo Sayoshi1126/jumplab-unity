@@ -88,6 +88,7 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GraphTest.cs" />
     <Compile Include="Assets\Scripts\Levels.cs" />
+    <Compile Include="Assets\Scripts\PersistentAmongPlayModeAttribute.cs" />
     <Compile Include="Assets\Scripts\SingletonMonoBahavior.cs" />
     <Compile Include="Assets\Scripts\inputDemo.cs" />
     <Reference Include="Unity.Timeline.Editor">

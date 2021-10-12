@@ -6,7 +6,7 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: KirbyAnimatorController
+  m_Name: OneHeadAnimatorController
   m_Controller: {fileID: 9100000, guid: 6fae330841ad989488f45f9669da2d6b, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: 9091d00be02abc1428518a75463fc604, type: 2}

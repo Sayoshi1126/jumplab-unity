@@ -9,7 +9,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public GameObject Masao;
 
     public RuntimeAnimatorController MasaoAnimator;
-    public RuntimeAnimatorController KirbyAnimator;
+    public RuntimeAnimatorController OneHeadAnimator;
     public RuntimeAnimatorController RealAnimator;
 
     // Start is called before the first frame update

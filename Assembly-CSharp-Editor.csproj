@@ -69,6 +69,8 @@
     <Compile Include="Assets\Editor\GraphDrawer.cs" />
     <Compile Include="Assets\Editor\GraphInspectorTest.cs" />
     <Compile Include="Assets\Editor\Graphinspector.cs" />
+    <Compile Include="Assets\Editor\PersistentAmongPlayModeDrawer.cs" />
+    <Compile Include="Assets\Editor\PersistentAmongPlayModeProcessor.cs" />
     <Reference Include="UnityEditor.TestRunner">
       <HintPath>C:/Users/burom/Documents/jumplab-unity/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>

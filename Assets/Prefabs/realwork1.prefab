@@ -100,7 +100,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 395c0108609d408419dcd3345b34c1bb, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody2D: {fileID: 0}
   walkSpeed: 2
-  edgeTurn: 0
+  edgeTurn: 1
   wallTurn: 0
 --- !u!58 &1660667910895235047
 CircleCollider2D:
