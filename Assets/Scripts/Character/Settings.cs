@@ -50,6 +50,13 @@ public class Settings : SingletonMonoBehaviour<Settings>
     [PersistentAmongPlayMode] public float enemyStepVelocity = 300;//踏みつけ時のバウンドの強さ
     [PersistentAmongPlayMode] public bool enemyStepJump = true;//踏みつけジャンプの可否
 
+    [PersistentAmongPlayMode] public float bulletSpeed = 10f;
+    [PersistentAmongPlayMode] public float bolletAxcel = 0.1f;
+    [PersistentAmongPlayMode] public float bulletMaxSpeed;
+    [PersistentAmongPlayMode] public float destroyTime = 2f;
+    [PersistentAmongPlayMode] public Vector2 shotAngle;
+
+
 
     // Camera parameters
     //public bool showCameraMarker = false; // Show the center marker or not.
@@ -77,7 +84,8 @@ public class Settings : SingletonMonoBehaviour<Settings>
     {
         oneHead,
         threeHead,
-        eightHead
+        eightHead,
+        Toufu
     }
     [SerializeField] CharaType charaType = CharaType.oneHead;
     private CharaType changeChara;
@@ -112,6 +120,10 @@ public class Settings : SingletonMonoBehaviour<Settings>
         {
             Masao.GetComponent<Animator>().runtimeAnimatorController = (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(GameManager.Instance.RealAnimator);
         }
+        else if (charaType == CharaType.Toufu)
+        {
+            Masao.GetComponent<Animator>().runtimeAnimatorController = (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(GameManager.Instance.ToufuAnimator);
+        }
     }
 
     private void Update()
@@ -135,6 +147,10 @@ public class Settings : SingletonMonoBehaviour<Settings>
             else if (charaType == CharaType.eightHead)
             {
                 Masao.GetComponent<Animator>().runtimeAnimatorController = (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(GameManager.Instance.RealAnimator);
+            }
+            else if (charaType == CharaType.Toufu)
+            {
+                Masao.GetComponent<Animator>().runtimeAnimatorController = (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(GameManager.Instance.ToufuAnimator);
             }
             changeChara = charaType;
         }

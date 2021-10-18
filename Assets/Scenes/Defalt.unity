@@ -9180,6 +9180,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 815714619}
   m_CullTransparentMesh: 0
+--- !u!1 &818684230
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 818684231}
+  m_Layer: 9
+  m_Name: shotPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &818684231
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818684230}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.178, y: 0.254, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1566397032959661270}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &834084567
 GameObject:
   m_ObjectHideFlags: 0
@@ -10758,6 +10788,7 @@ MonoBehaviour:
   MasaoAnimator: {fileID: 9100000, guid: 6fae330841ad989488f45f9669da2d6b, type: 2}
   OneHeadAnimator: {fileID: 22100000, guid: 148336551a6fef24d86acc737d0a1063, type: 2}
   RealAnimator: {fileID: 22100000, guid: 066d87649d6906946a08bfe60067ce9d, type: 2}
+  ToufuAnimator: {fileID: 22100000, guid: f0a8dd13c23b30149ba28da70150e7de, type: 2}
 --- !u!4 &1006309704
 Transform:
   m_ObjectHideFlags: 0
@@ -11901,7 +11932,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.5992063, y: 1}
+    m_SensorSize: {x: 1.6008493, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -25160,6 +25191,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1535530861735084123, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: f0a8dd13c23b30149ba28da70150e7de,
+        type: 2}
     - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
         type: 3}
       propertyPath: jumpVelocity
@@ -25170,6 +25207,22 @@ PrefabInstance:
       propertyPath: showTrail
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: charaType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3444414128907986365, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 8499607560121783990, guid: 3684d14c857572a46adb7eed3c44fd77,
+        type: 3}
+    - target: {fileID: 3444414128907986365, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: shotPosition
+      value: 
+      objectReference: {fileID: 818684231}
     - target: {fileID: 6807830126993563090, guid: b197bac94c61ae141b6989c7d95aa71f,
         type: 3}
       propertyPath: m_Name

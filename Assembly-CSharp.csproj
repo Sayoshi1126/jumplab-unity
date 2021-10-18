@@ -73,6 +73,7 @@
     <Compile Include="Assets\DataDiagram\Script\DD_LineButtonsContent.cs" />
     <Compile Include="Assets\DataDiagram\Script\DD_Lines.cs" />
     <Compile Include="Assets\DataDiagram\Script\DD_ZoomButton.cs" />
+    <Compile Include="Assets\Scripts\BulletController.cs" />
     <Compile Include="Assets\Scripts\Camera\Bg.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraMarker.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraScript.cs" />

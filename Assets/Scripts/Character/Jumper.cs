@@ -42,7 +42,9 @@ public class Jumper : MonoBehaviour
     float boxColliderX;
     bool corner_correction = false;
 
+    [SerializeField] private Transform shotPosition;
     [SerializeField] private ContactFilter2D filter2d = default;
+    public GameObject bulletPrefab;
     
 
     // Start is called before the first frame update
@@ -293,6 +295,12 @@ public class Jumper : MonoBehaviour
         vx = Settings.Instance.vxAdjustmentAtTakeoff * vx;
     }
 
+    void shot()
+    {
+        Debug.Log("shot");
+        Instantiate(bulletPrefab,shotPosition.transform.position,transform.rotation);
+    }
+
     void wallJump()
     {
         if (Settings.Instance.allowWallJump)
@@ -333,6 +341,11 @@ public class Jumper : MonoBehaviour
         else if(Jumping&& Input.GetKey(KeyCode.Space)&&enemyJumping&&!Settings.Instance.enemyStepJump)
         {
             jumpCanceled();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            shot();
         }
     }
 

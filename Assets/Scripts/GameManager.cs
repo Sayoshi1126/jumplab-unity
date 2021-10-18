@@ -11,6 +11,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public RuntimeAnimatorController MasaoAnimator;
     public RuntimeAnimatorController OneHeadAnimator;
     public RuntimeAnimatorController RealAnimator;
+    public RuntimeAnimatorController ToufuAnimator;
 
     // Start is called before the first frame update
     void Awake()
