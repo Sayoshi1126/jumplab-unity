@@ -8,6 +8,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     [HideInInspector] public Jumper jumper;
     public GameObject Masao;
 
+    public int bulletNum;
+
     public RuntimeAnimatorController MasaoAnimator;
     public RuntimeAnimatorController OneHeadAnimator;
     public RuntimeAnimatorController RealAnimator;

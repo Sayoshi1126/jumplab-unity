@@ -50,11 +50,13 @@ public class Settings : SingletonMonoBehaviour<Settings>
     [PersistentAmongPlayMode] public float enemyStepVelocity = 300;//踏みつけ時のバウンドの強さ
     [PersistentAmongPlayMode] public bool enemyStepJump = true;//踏みつけジャンプの可否
 
-    [PersistentAmongPlayMode] public float bulletSpeed = 10f;
+    //[PersistentAmongPlayMode] public float bulletSpeed = 10f;
+    public AnimationCurve bulletSpeed = null;
     [PersistentAmongPlayMode] public float bolletAxcel = 0.1f;
     [PersistentAmongPlayMode] public float bulletMaxSpeed;
     [PersistentAmongPlayMode] public float destroyTime = 2f;
-    [PersistentAmongPlayMode] public Vector2 shotAngle;
+    [Range(0,360)] [PersistentAmongPlayMode] public float shotAngle;
+    [Range(0, 10)] [PersistentAmongPlayMode] public int bulletLimit;
 
 
 

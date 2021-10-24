@@ -10785,6 +10785,7 @@ MonoBehaviour:
   Masaorb2D: {fileID: 0}
   jumper: {fileID: 0}
   Masao: {fileID: 1566397032959661273}
+  bulletNum: 0
   MasaoAnimator: {fileID: 9100000, guid: 6fae330841ad989488f45f9669da2d6b, type: 2}
   OneHeadAnimator: {fileID: 22100000, guid: 148336551a6fef24d86acc737d0a1063, type: 2}
   RealAnimator: {fileID: 22100000, guid: 066d87649d6906946a08bfe60067ce9d, type: 2}
@@ -25199,6 +25200,16 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
         type: 3}
+      propertyPath: bulletAxcel.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: bulletSpeed.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
       propertyPath: jumpVelocity
       value: 400
       objectReference: {fileID: 0}
@@ -25211,6 +25222,126 @@ PrefabInstance:
         type: 3}
       propertyPath: charaType
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: bulletAxcel.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: bulletAxcel.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: bulletAxcel.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: bulletAxcel.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: bulletAxcel.m_Curve.Array.data[1].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: bulletAxcel.m_Curve.Array.data[1].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: bulletAxcel.m_Curve.Array.data[1].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: bulletAxcel.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: bulletAxcel.m_Curve.Array.data[0].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: bulletAxcel.m_Curve.Array.data[0].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: bulletSpeed.m_Curve.Array.data[0].value
+      value: 0.5085449
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: bulletSpeed.m_Curve.Array.data[0].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: bulletSpeed.m_Curve.Array.data[1].time
+      value: 0.40264893
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: bulletSpeed.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: bulletSpeed.m_Curve.Array.data[1].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: bulletMaxSpeed
+      value: 10.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: bulletSpeed.m_Curve.Array.data[1].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: bulletSpeed.m_Curve.Array.data[1].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: bulletLimit
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: bulletSpeed.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: bulletSpeed.m_Curve.Array.data[0].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: bulletSpeed.m_Curve.Array.data[0].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: bulletSpeed.m_PostInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353995583788912277, guid: b197bac94c61ae141b6989c7d95aa71f,
+        type: 3}
+      propertyPath: shotAngle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3444414128907986365, guid: b197bac94c61ae141b6989c7d95aa71f,
         type: 3}

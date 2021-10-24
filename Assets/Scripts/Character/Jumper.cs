@@ -298,7 +298,11 @@ public class Jumper : MonoBehaviour
     void shot()
     {
         Debug.Log("shot");
-        Instantiate(bulletPrefab,shotPosition.transform.position,transform.rotation);
+
+        if (GameManager.Instance.bulletNum < Settings.Instance.bulletLimit)
+        {
+            Instantiate(bulletPrefab, shotPosition.transform.position, transform.rotation);
+        }
     }
 
     void wallJump()
