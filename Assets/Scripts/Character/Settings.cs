@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 public class Settings : SingletonMonoBehaviour<Settings>
 {
     [HideInInspector] public float dir;
@@ -24,41 +25,55 @@ public class Settings : SingletonMonoBehaviour<Settings>
 
     [HideInInspector] public bool jumping;
 
-
-    [PersistentAmongPlayMode] public bool allowAerialJump = true;// Allow aerial jump or not.
-    [PersistentAmongPlayMode] public bool allowAerialWalk = true;// Allow aerial walk or not.
-    [PersistentAmongPlayMode] public bool allowAerialTurn = false; //Allow aerial turn or not.
-    [PersistentAmongPlayMode] public bool stopAndFall = true; // The hoizontal motion is halted when the jumper goes off the foothold.
-    [PersistentAmongPlayMode] public bool allowWallJump; // Allow wall jump or not.
-    [PersistentAmongPlayMode] public bool allowWallSlide; // Allow wall slide or not.
-    [PersistentAmongPlayMode] public float maxVx = 8; // Maximum horizontal velocity of the jumper.
-    [PersistentAmongPlayMode] public float maxVy = 30; // Maximum vertical velocity of the jumper. Limits only the falling motion.
-    [PersistentAmongPlayMode] public float jumpVelocity = 13;// Initial vertical velocity of a jump motion.
-    [PersistentAmongPlayMode] public float jumpVelocityBonus = 0;// The fasterrun gives an initial jump velocity bonus that allows a higher jump.
-    [PersistentAmongPlayMode] public int jumpAnticipationFrames = 1; //Duration of the anticipation of jump motion in frames.
-    [PersistentAmongPlayMode] public float vxAdjustmentAtTakeoff = 0.0f; //Horizontal velocity adjustment at the takeoff.
-    [PersistentAmongPlayMode] public float maxPropellingFrames = 0;
-    [PersistentAmongPlayMode] public float gravityRising = 0.5f;
-    [PersistentAmongPlayMode] public float gravityFalling = 1.2f; // gravity when falling.
-    [PersistentAmongPlayMode] public float verticalSpeedSustainLevel = 1.0f; // Sustain level of the vertical speed when the button released.
-    [PersistentAmongPlayMode] public float axNormal = 0.2f; // Horizontal acceleration in normal state.
-    [PersistentAmongPlayMode] public float axBrake = 1.0f; // Horizontal acceleration when braking.
-    [PersistentAmongPlayMode] public float axJumping = 0.1f; // Horizontal acceleration when jumping.
-    [PersistentAmongPlayMode] public float collisionTolerance = 0.1f; // Tolerance to automatically avoid blocks when jumping (in pixels).
-    [PersistentAmongPlayMode] public float wallJumpSpeedRatio = 1.0f; // The velocity raito of the jumping speed of the wall jump to the maxVx.
-    [PersistentAmongPlayMode] public bool enemyStep = true;//踏みつけの可否
-    [PersistentAmongPlayMode] public float enemyStepVelocity = 300;//踏みつけ時のバウンドの強さ
-    [PersistentAmongPlayMode] public bool enemyStepJump = true;//踏みつけジャンプの可否
-
-    //[PersistentAmongPlayMode] public float bulletSpeed = 10f;
-    public AnimationCurve bulletSpeed = null;
-    [PersistentAmongPlayMode] public float bolletAxcel = 0.1f;
-    [PersistentAmongPlayMode] public float bulletMaxSpeed;
-    [PersistentAmongPlayMode] public float destroyTime = 2f;
-    [Range(0,360)] [PersistentAmongPlayMode] public float shotAngle;
-    [Range(0, 10)] [PersistentAmongPlayMode] public int bulletLimit;
-
-
+    [Serializable]
+    public struct JumpParamater
+    {
+        [PersistentAmongPlayMode] public bool allowAerialJump;// Allow aerial walk or not.
+        [PersistentAmongPlayMode] public int coyoteTime;// Allow aerial jump or not.
+        [PersistentAmongPlayMode] public bool allowAerialWalk;// Allow aerial walk or not.
+        [PersistentAmongPlayMode] public bool allowAerialTurn; //Allow aerial turn or not.
+        [PersistentAmongPlayMode] public bool stopAndFall; // The hoizontal motion is halted when the jumper goes off the foothold.
+        [PersistentAmongPlayMode] public bool allowWallJump; // Allow wall jump or not.
+        [PersistentAmongPlayMode] public bool allowWallSlide; // Allow wall slide or not.
+        [PersistentAmongPlayMode] public bool aerialInertia; // Allow wall slide or not.
+        [PersistentAmongPlayMode] public float maxVx; // Maximum horizontal velocity of the jumper.
+        [PersistentAmongPlayMode] public float maxVy; // Maximum vertical velocity of the jumper. Limits only the falling motion.
+        [PersistentAmongPlayMode] public float jumpVelocity;// Initial vertical velocity of a jump motion.
+        [PersistentAmongPlayMode] public float jumpVelocityBonus;// The fasterrun gives an initial jump velocity bonus that allows a higher jump.
+        [PersistentAmongPlayMode] public int jumpAnticipationFrames; //Duration of the anticipation of jump motion in frames.
+        [PersistentAmongPlayMode] public float vxAdjustmentAtTakeoff; //Horizontal velocity adjustment at the takeoff.
+        [PersistentAmongPlayMode] public float maxPropellingFrames;
+        [PersistentAmongPlayMode] public float gravityRising;
+        [PersistentAmongPlayMode] public float gravityFalling; // gravity when falling.
+        [PersistentAmongPlayMode] public float verticalSpeedSustainLevel; // Sustain level of the vertical speed when the button released.
+        [PersistentAmongPlayMode] public float axNormal; // Horizontal acceleration in normal state.
+        [PersistentAmongPlayMode] public float axBrake; // Horizontal acceleration when braking.
+        [PersistentAmongPlayMode] public float axJumping; // Horizontal acceleration when jumping.
+        [PersistentAmongPlayMode] public float collisionTolerance; // Tolerance to automatically avoid blocks when jumping (in pixels).
+        [PersistentAmongPlayMode] public float wallJumpSpeedRatio; // The velocity raito of the jumping speed of the wall jump to the maxVx.
+    }
+    [SerializeField] public JumpParamater jumpParam;
+    [Serializable]
+    public struct AttackParamater
+    {
+        [PersistentAmongPlayMode] public bool enemyStep;//踏みつけの可否
+        [Range(1, 1000)] [PersistentAmongPlayMode] public float enemyStepVelocity;//踏みつけ時のバウンドの強さ
+        [PersistentAmongPlayMode] public bool enemyStepJump;//踏みつけジャンプの可否
+        //[PersistentAmongPlayMode] public float bulletSpeed = 10f;
+        [PersistentAmongPlayMode] public bool UseCurve;
+        public AnimationCurve bulletSpeed;
+        [Range(0.1f, 30)] [PersistentAmongPlayMode] public float bulletMaxSpeed;
+        [Range(0, 30)] [PersistentAmongPlayMode] public float bulletStartSpeed;
+        [Range(0, 1)] [PersistentAmongPlayMode] public float bulletAx;
+        [Range(0.1f, 5)] [PersistentAmongPlayMode] public float BulletLifeTime;
+        [Range(-90, 90)] [PersistentAmongPlayMode] public float shotAngle;
+        [Range(0, 10)] [PersistentAmongPlayMode] public int bulletLimit;
+        [Range(1, 10)] [PersistentAmongPlayMode] public int atackStartupFrame;
+        [Range(1, 10)] [PersistentAmongPlayMode] public int atackActiveFrame;
+        [Range(0.2f, 3)] [PersistentAmongPlayMode] public float atackRange;
+        [PersistentAmongPlayMode] public bool walkAttack;
+    }
+    [SerializeField] public AttackParamater attackParam;
 
     // Camera parameters
     //public bool showCameraMarker = false; // Show the center marker or not.
@@ -89,7 +104,7 @@ public class Settings : SingletonMonoBehaviour<Settings>
         eightHead,
         Toufu
     }
-    [SerializeField] CharaType charaType = CharaType.oneHead;
+    [SerializeField] public CharaType charaType = CharaType.oneHead;
     private CharaType changeChara;
 
     private void Awake()

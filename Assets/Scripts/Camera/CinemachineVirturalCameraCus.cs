@@ -8,7 +8,10 @@ public class CinemachineVirturalCameraCus : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
     private CinemachineFramingTransposer transposer;
-    [SerializeField] private float focusDistance = 0.3f;
+
+    private Jumper _player;
+
+    [SerializeField] public float focusDistance = 0.3f;
     [SerializeField] float focusSpeed = 0.01f;
     private float focus = 0.5f;
 
@@ -18,6 +21,7 @@ public class CinemachineVirturalCameraCus : MonoBehaviour
 
     private bool lastJumping;
     private bool stopCamera;
+    private GazePoint gazeObject;
 
     private float DZW;//dead zone weight
     private float DZH;
@@ -29,6 +33,7 @@ public class CinemachineVirturalCameraCus : MonoBehaviour
     {
         transposer = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
         stopCamera = false;
+        gazeObject = transposer.FollowTarget.GetComponent<GazePoint>();
     }
 
     // Update is called once per frame
@@ -38,44 +43,49 @@ public class CinemachineVirturalCameraCus : MonoBehaviour
         {
             if (ForwardFocus)
             {
-                focus = 0.5f - focusDistance * Settings.Instance.dir;
+                focus = focusDistance * Settings.Instance.dir;
             }
-            else if (ProjectedFocus)
-            {
-                focus = 0.5f - focusDistance * Settings.Instance.jumperVX / Settings.Instance.maxVx;
-                if(Settings.Instance.jumperVX==0&&ForwardFocus)
-                {
-                    focus = 0.5f - focusDistance * Settings.Instance.dir;
-                }
-            }
-            else
-            {
-                focus = 0.5f;
-            }        
+            //else if (ProjectedFocus)
+            //{
+            //    focus = 0.5f - focusDistance * Settings.Instance.jumperVX / Settings.Instance.jumpParam.maxVx;
+            //    if(Settings.Instance.jumperVX==0&&ForwardFocus)
+            //    {
+            //        focus = focusDistance * Settings.Instance.dir;
+            //    }
+            //}
+            //else
+            //{
+            //    focus = 0.5f;
+            //}        
         }
 
 
         //projected focus
-        if(focus<0.5f)
+                //forward focus
+        if (ForwardFocus&& Settings.Instance.dir!=0)
         {
-            if (focus < transposer.m_ScreenX)
+            if (Settings.Instance.jumper.gameObject.transform.localScale.x > 0)//右に向いているとき
             {
-                transposer.m_ScreenX -= focusSpeed;
+                if (focus > transposer.m_TrackedObjectOffset.x)
+                {
+                    transposer.m_TrackedObjectOffset.x += focusSpeed;
+ 
+                }
+                else if (focus <= transposer.m_TrackedObjectOffset.x)
+                {
+                    transposer.m_TrackedObjectOffset.x = focus;
+                }
             }
-            else
+            else if(Settings.Instance.jumper.gameObject.transform.localScale.x < 0)//左に向いているとき
             {
-                transposer.m_ScreenX = focus;
-            }
-        }
-        else if(focus>0.5f)
-        {
-            if (focus > transposer.m_ScreenX)
-            {
-                transposer.m_ScreenX += focusSpeed;
-            }
-            else
-            {
-                transposer.m_ScreenX = focus;
+                if (focus < transposer.m_TrackedObjectOffset.x)
+                {
+                    transposer.m_TrackedObjectOffset.x -= focusSpeed;
+                }
+                else if (focus >= transposer.m_TrackedObjectOffset.x)
+                {
+                    transposer.m_TrackedObjectOffset.x = focus;
+                }
             }
         }
 
@@ -85,15 +95,12 @@ public class CinemachineVirturalCameraCus : MonoBehaviour
             if(Settings.Instance.jumping==true)
             {
                 //platform snapping start
-                stopCamera = true;
-                changeZone(1,1,1,1);
-                
+                gazeObject.platFormSnaping = true;
             }
             else
             {
                 //platform snapping end
-                stopCamera = false;
-                changeZone(DZW,DZH,SZW,SZH);
+                gazeObject.platFormSnaping = false;
             }
         }
 

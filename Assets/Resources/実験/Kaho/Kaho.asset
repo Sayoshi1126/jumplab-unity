@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2378d8fe34e19104b832477642a9e446, type: 3}
+  m_Name: Kaho
+  m_EditorClassIdentifier: 
+  Params:
+  - id: 0
+    name: hanyou
+    caption: 
+    comment: 
+    MaxVx: 2.581799
+    MaxVy: 7.9385285
+    AxNormal: 0.39639184
+    AxBrake: 0.7929472
+    AxJumping: 0.081662424
+    AerialInertia: 1
+    JumpVelocity: 153.93997
+    GravityRising: 0.48762882
+    GravityFalling: 1.1631998
+    VerticalSpeedSustainLevel: 0.8462523
+  - id: 1
+    name: tezawari
+    caption: "\u8AAC\u660E\u6587"
+    comment: 
+    MaxVx: 3.9647338
+    MaxVy: 5.7811513
+    AxNormal: 0.39639184
+    AxBrake: 0.7929472
+    AxJumping: 0.36931282
+    AerialInertia: 1
+    JumpVelocity: 254.61763
+    GravityRising: 1.1514378
+    GravityFalling: 3.67667
+    VerticalSpeedSustainLevel: 0.8462523
+  - id: 2
+    name: chakuti
+    caption: "\u8AAC\u660E\u6587"
+    comment: 
+    MaxVx: 2.581799
+    MaxVy: 8.934241
+    AxNormal: 0.39639184
+    AxBrake: 1.0363437
+    AxJumping: 0.0927257
+    AerialInertia: 1
+    JumpVelocity: 165.55656
+    GravityRising: 0.388058
+    GravityFalling: 1.2959609
+    VerticalSpeedSustainLevel: 0.8462523
+  fileTitle: kaho
+  fileCaption: "\u8AAC\u660E\u6587\u3092\u3053\u3053\u306B\u304B\u304F"

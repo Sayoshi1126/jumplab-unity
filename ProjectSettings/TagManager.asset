@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ground
   - enemy
+  - death
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - ground
   - Player
   - Enemy
-  - 
+  - death
   - 
   - 
   - 

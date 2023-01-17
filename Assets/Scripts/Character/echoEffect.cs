@@ -14,6 +14,7 @@ public class echoEffect : MonoBehaviour
     private SpriteRenderer playerSprite;
 
     private SpriteRenderer echoSprite;
+    [SerializeField]private Sprite pointSprite;
     void Start()
     {
         player = GetComponent<Jumper>();
@@ -31,7 +32,14 @@ public class echoEffect : MonoBehaviour
             if (timeBtwSpawns <= 0)
             {
                 //spawn echo game object
-                echoSprite.sprite = playerSprite.sprite;
+                if (Settings.Instance.showAfterimage)
+                {
+                    echoSprite.sprite = playerSprite.sprite;
+                }
+                else
+                {
+                    echoSprite.sprite = pointSprite;
+                }
                 GameObject instance = (GameObject)Instantiate(echo, transform.position, Quaternion.identity);
                 echo.transform.localScale = new Vector2(player.transform.localScale.x,1);
                 Destroy(instance.gameObject, 1f);

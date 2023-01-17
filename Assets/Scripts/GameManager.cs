@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using InControl;
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
@@ -14,6 +15,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public RuntimeAnimatorController OneHeadAnimator;
     public RuntimeAnimatorController RealAnimator;
     public RuntimeAnimatorController ToufuAnimator;
+
+    public GameObject Menu;
 
     // Start is called before the first frame update
     void Awake()
@@ -32,6 +35,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     // Update is called once per frame
     void Update()
     {
-        
+        if (ControllerManager.Instance.menu.WasPressed)
+        {
+            Menu.gameObject.SetActive(!Menu.gameObject.activeSelf);
+        }
     }
 }

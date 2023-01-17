@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2378d8fe34e19104b832477642a9e446, type: 3}
+  m_Name: Inoko
+  m_EditorClassIdentifier: 
+  Params:
+  - id: 0
+    name: tezawari
+    caption: 
+    comment: 
+    MaxVx: 7.321142
+    MaxVy: 9.403057
+    AxNormal: 0.012927137
+    AxBrake: 0.19083034
+    AxJumping: 0.013703264
+    AerialInertia: 1
+    JumpVelocity: 331.091
+    GravityRising: 1.7904929
+    GravityFalling: 0.8646456
+    VerticalSpeedSustainLevel: 0.98629665
+  - id: 1
+    name: teza
+    caption: 
+    comment: 
+    MaxVx: 10
+    MaxVy: 7.655883
+    AxNormal: 0.026630402
+    AxBrake: 0.06672854
+    AxJumping: 0
+    AerialInertia: 1
+    JumpVelocity: 515.2421
+    GravityRising: 4.803153
+    GravityFalling: 4.821082
+    VerticalSpeedSustainLevel: 1
+  - id: 2
+    name: "\u540D\u524D\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044"
+    caption: "\u8AAC\u660E\u6587"
+    comment: 
+    MaxVx: 0
+    MaxVy: 0
+    AxNormal: 0
+    AxBrake: 0
+    AxJumping: 0
+    AerialInertia: 0
+    JumpVelocity: 0
+    GravityRising: 0
+    GravityFalling: 0
+    VerticalSpeedSustainLevel: 0
+  - id: 3
+    name: hanyou
+    caption: "\u8AAC\u660E\u6587"
+    comment: 
+    MaxVx: 2.3194275
+    MaxVy: 3.7929103
+    AxNormal: 0.05403693
+    AxBrake: 0.2593471
+    AxJumping: 0.027406747
+    AerialInertia: 1
+    JumpVelocity: 244.75998
+    GravityRising: 1.1738447
+    GravityFalling: 0.37132612
+    VerticalSpeedSustainLevel: 0.98629665
+  - id: 4
+    name: chakuchi
+    caption: "\u8AAC\u660E\u6587"
+    comment: 
+    MaxVx: 2.3194275
+    MaxVy: 3.7929103
+    AxNormal: 0.05403693
+    AxBrake: 0.2593471
+    AxJumping: 0.082220025
+    AerialInertia: 1
+    JumpVelocity: 211.18697
+    GravityRising: 0.6394148
+    GravityFalling: 0.37132612
+    VerticalSpeedSustainLevel: 0.98629665
+  fileTitle: "\u4F7F\u7528\u8005\u6C0F\u540D"
+  fileCaption: "\u8AAC\u660E\u6587\u3092\u3053\u3053\u306B\u304B\u304F"

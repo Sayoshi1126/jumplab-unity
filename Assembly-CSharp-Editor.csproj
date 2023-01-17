@@ -69,8 +69,10 @@
     <Compile Include="Assets\Editor\GraphDrawer.cs" />
     <Compile Include="Assets\Editor\GraphInspectorTest.cs" />
     <Compile Include="Assets\Editor\Graphinspector.cs" />
+    <Compile Include="Assets\Editor\ItemEditorWindow.cs" />
     <Compile Include="Assets\Editor\PersistentAmongPlayModeDrawer.cs" />
     <Compile Include="Assets\Editor\PersistentAmongPlayModeProcessor.cs" />
+    <Compile Include="Assets\Editor\PlayerSettingEditorWindow.cs" />
     <Reference Include="UnityEditor.TestRunner">
       <HintPath>C:/Users/burom/Documents/jumplab-unity/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
@@ -352,6 +354,9 @@
     </Reference>
     <Reference Include="UnityEditor.WebGL.Extensions">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.7f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.OSXStandalone.Extensions">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.7f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Android.Extensions">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.7f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
@@ -733,6 +738,18 @@
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{99390651-D9C4-69BC-3F88-0BBF60FD36C3}</Project>
       <Name>Assembly-CSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="InControl.Examples.csproj">
+      <Project>{7F6D7CFE-EC02-8B2A-8B33-3DC25E0840C7}</Project>
+      <Name>InControl.Examples</Name>
+    </ProjectReference>
+    <ProjectReference Include="InControl.csproj">
+      <Project>{ACD8CD8B-7B53-ED75-1845-1FABF8F64CA9}</Project>
+      <Name>InControl</Name>
+    </ProjectReference>
+    <ProjectReference Include="InControl.Editor.csproj">
+      <Project>{B6F9C9C3-62FD-4276-355F-D533DE3029A8}</Project>
+      <Name>InControl.Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2378d8fe34e19104b832477642a9e446, type: 3}
+  m_Name: yobijikken
+  m_EditorClassIdentifier: 
+  Params:
+  - id: 0
+    name: "\u6C4E\u7528"
+    caption: 
+    comment: 
+    MaxVx: 3.7
+    MaxVy: 5
+    AxNormal: 0.08
+    AxBrake: 0.2
+    AxJumping: 0.1
+    AerialInertia: 0
+    JumpVelocity: 200
+    GravityRising: 0.8
+    GravityFalling: 0.7
+    VerticalSpeedSustainLevel: 1
+  - id: 1
+    name: tesaguri
+    caption: "\u8AAC\u660E\u6587"
+    comment: 
+    MaxVx: 3.5
+    MaxVy: 5
+    AxNormal: 0.1
+    AxBrake: 0.1
+    AxJumping: 0.1
+    AerialInertia: 0
+    JumpVelocity: 225
+    GravityRising: 1
+    GravityFalling: 1
+    VerticalSpeedSustainLevel: 1
+  - id: 2
+    name: "\u7740\u5730"
+    caption: "\u8AAC\u660E\u6587"
+    comment: 
+    MaxVx: 3
+    MaxVy: 5
+    AxNormal: 0.04
+    AxBrake: 0.4
+    AxJumping: 0.1
+    AerialInertia: 0
+    JumpVelocity: 210
+    GravityRising: 0.9
+    GravityFalling: 0.6
+    VerticalSpeedSustainLevel: 1
+  fileTitle: ogawa
+  fileCaption: "\u8AAC\u660E\u6587\u3092\u3053\u3053\u306B\u304B\u304F"

@@ -12,30 +12,50 @@ public class BulletController : MonoBehaviour
 
     float rate;
     float localscale;
+    float startSpeed;
+    float ax;
 
     void Start()
     {
         rate = 0;
         GameManager.Instance.bulletNum += 1;
-        vec = Settings.Instance.shotAngle;
-        speed = Settings.Instance.bulletSpeed.Evaluate(rate)*Settings.Instance.bulletMaxSpeed;
-        float destroyTime = Settings.Instance.destroyTime;
+        vec = Settings.Instance.attackParam.shotAngle;
+        if (Settings.Instance.attackParam.UseCurve)
+        {
+            speed = Settings.Instance.attackParam.bulletSpeed.Evaluate(rate) * Settings.Instance.attackParam.bulletMaxSpeed;
+        }
+        else
+        {
+            speed = Settings.Instance.attackParam.bulletStartSpeed;
+            //speed += Settings.Instance.attackParam.bulletAx;
+        }
+        float destroyTime = Settings.Instance.attackParam.BulletLifeTime;
 
         player = GameObject.FindWithTag("Player");
         localscale = player.transform.localScale.x;
         rigidbody2d = GetComponent<Rigidbody2D>();
         rigidbody2d.velocity = new Vector2(speed*player.transform.localScale.x*Mathf.Cos(vec / 180 * Mathf.PI) ,speed*Mathf.Sin(vec / 180 * Mathf.PI));
 
-        Invoke("destroyMethod", Settings.Instance.destroyTime);
+        Invoke("destroyMethod", Settings.Instance.attackParam.BulletLifeTime);
     }
 
     // Update is called once per frame
     void Update()
     {
         rate += Time.deltaTime;
-        speed = Settings.Instance.bulletSpeed.Evaluate(rate / Settings.Instance.destroyTime) * Settings.Instance.bulletMaxSpeed;
+        if (Settings.Instance.attackParam.UseCurve)
+        {
+            speed = Settings.Instance.attackParam.bulletSpeed.Evaluate(rate) * Settings.Instance.attackParam.bulletMaxSpeed;
+        }
+        else
+        {
+            //speed = Settings.Instance.attackParam.bulletStartSpeed;
+            speed += Settings.Instance.attackParam.bulletAx;
+        }
+        //speed = Settings.Instance.attackParam.bulletSpeed.Evaluate(rate / Settings.Instance.attackParam.destroyTime) * Settings.Instance.attackParam.bulletMaxSpeed;
         rigidbody2d.velocity = new Vector2(speed * localscale * Mathf.Cos(vec / 180 * Mathf.PI), speed * Mathf.Sin(vec / 180 * Mathf.PI));
         //rigidbody2d.velocity = transform.right * speed * player.transform.localScale.x;
+    
     }
 
     void destroyMethod()

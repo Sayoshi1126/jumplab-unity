@@ -1,0 +1,3 @@
+SaveTime,MaxVx,MaxVy,AxNormal,AxBrake,AxJumping,AerialInertia,JumpVelocity,GravityRising,GravityFalling,VerticalSpeedSustainLevel
+0,1,5.403363,2,0.2406075,0.2799011,False,233.0847,1.056858,0.9325222,1
+10.00205,1,5.403363,2,0.2406075,0.2799011,False,233.0847,1.056858,0.9325222,1

@@ -73,24 +73,39 @@
     <Compile Include="Assets\DataDiagram\Script\DD_LineButtonsContent.cs" />
     <Compile Include="Assets\DataDiagram\Script\DD_Lines.cs" />
     <Compile Include="Assets\DataDiagram\Script\DD_ZoomButton.cs" />
+    <Compile Include="Assets\Scripts\CSVtest.cs" />
     <Compile Include="Assets\Scripts\Camera\Bg.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraMarker.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraScript.cs" />
     <Compile Include="Assets\Scripts\Camera\CinemachinePan.cs" />
     <Compile Include="Assets\Scripts\Camera\CinemachineVirturalCameraCus.cs" />
+    <Compile Include="Assets\Scripts\Camera\GazePoint.cs" />
+    <Compile Include="Assets\Scripts\ChangeMenu.cs" />
     <Compile Include="Assets\Scripts\Character\BulletController.cs" />
     <Compile Include="Assets\Scripts\Character\ControllerManager.cs" />
-    <Compile Include="Assets\Scripts\Character\Enemy.cs" />
     <Compile Include="Assets\Scripts\Character\Jumper.cs" />
     <Compile Include="Assets\Scripts\Character\Settings.cs" />
     <Compile Include="Assets\Scripts\Character\echoEffect.cs" />
+    <Compile Include="Assets\Scripts\Character\swordHitbox.cs" />
     <Compile Include="Assets\Scripts\Chart.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyMaster.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyMove.cs" />
     <Compile Include="Assets\Scripts\Example.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GraphTest.cs" />
+    <Compile Include="Assets\Scripts\ItemData.cs" />
     <Compile Include="Assets\Scripts\Levels.cs" />
     <Compile Include="Assets\Scripts\PersistentAmongPlayModeAttribute.cs" />
+    <Compile Include="Assets\Scripts\PlayerParaData.cs" />
+    <Compile Include="Assets\Scripts\PlotCSV\PlotPara.cs" />
+    <Compile Include="Assets\Scripts\PlotCSV\Table.cs" />
+    <Compile Include="Assets\Scripts\PlotCSV\TableRow.cs" />
     <Compile Include="Assets\Scripts\SingletonMonoBahavior.cs" />
+    <Compile Include="Assets\Scripts\UI\InputDisplay.cs" />
+    <Compile Include="Assets\Scripts\UI\ParaMenuEX.cs" />
+    <Compile Include="Assets\Scripts\UI\PararMenu.cs" />
+    <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\inputDemo.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/burom/Documents/jumplab-unity/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
@@ -719,6 +734,20 @@
     <Reference Include="Boo.Lang">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.7f1/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="InControl.Examples.csproj">
+      <Project>{7F6D7CFE-EC02-8B2A-8B33-3DC25E0840C7}</Project>
+      <Name>InControl.Examples</Name>
+    </ProjectReference>
+    <ProjectReference Include="InControl.csproj">
+      <Project>{ACD8CD8B-7B53-ED75-1845-1FABF8F64CA9}</Project>
+      <Name>InControl</Name>
+    </ProjectReference>
+    <ProjectReference Include="InControl.Editor.csproj">
+      <Project>{B6F9C9C3-62FD-4276-355F-D533DE3029A8}</Project>
+      <Name>InControl.Editor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
