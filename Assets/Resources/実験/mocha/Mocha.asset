@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2378d8fe34e19104b832477642a9e446, type: 3}
+  m_Name: Mocha
+  m_EditorClassIdentifier: 
+  Params:
+  - id: 0
+    name: tezawari
+    caption: "\u8AAC\u660E\u6587"
+    comment: 
+    MaxVx: 1.9493474
+    MaxVy: 2.92
+    AxNormal: 1.53
+    AxBrake: 0
+    AxJumping: 2
+    AerialInertia: 1
+    JumpVelocity: 306.8802
+    GravityRising: 1.8483326
+    GravityFalling: 4.31
+    VerticalSpeedSustainLevel: 0.797056
+  - id: 1
+    name: hanyou
+    caption: "\u8AAC\u660E\u6587"
+    comment: 
+    MaxVx: 1.8198372
+    MaxVy: 2.92
+    AxNormal: 1.53
+    AxBrake: 2
+    AxJumping: 0.96711296
+    AerialInertia: 1
+    JumpVelocity: 306.8802
+    GravityRising: 1.8483326
+    GravityFalling: 4.31
+    VerticalSpeedSustainLevel: 0.797056
+  - id: 2
+    name: chakuti
+    caption: "\u8AAC\u660E\u6587"
+    comment: 
+    MaxVx: 1.8198372
+    MaxVy: 2.92
+    AxNormal: 1.4454699
+    AxBrake: 2
+    AxJumping: 1.0191082
+    AerialInertia: 0
+    JumpVelocity: 306.8802
+    GravityRising: 1.8483326
+    GravityFalling: 4.31
+    VerticalSpeedSustainLevel: 0.797056
+  fileTitle: "\u30C7\u30D5\u30A9\u30EB\u30C8"
+  fileCaption: "\u30C9\u30E9\u30C3\u30B0\u30A2\u30F3\u30C9\u30C9\u30ED\u30C3\u30D7\u3057\u3066"
